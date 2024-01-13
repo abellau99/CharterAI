@@ -4,10 +4,18 @@ import { Autocomplete, AutocompleteItem, Avatar} from "@nextui-org/react";
 import { fetchQuery } from "../../api/brandfetch/fetchQuery";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
+interface Logo {
+  name: string;
+  domain: string;
+  icon: string | null;
+}
+interface BrandAutocompleteProps {
+  onSelectLogo: (logo: Logo) => void;
+}
 
-const SearchBar: React.FC = () => {
-    const [inputValue, setInputValue] = useState<string>('');
-    const [options, setOptions] = useState<any[]>([]); // Define type for options based on API response
+const SearchBar: React.FC<BrandAutocompleteProps> = ({ onSelectLogo }) => {
+    const [inputValue, setInputValue] = useState<string>(''); 
+    const [options, setOptions] = useState<Logo[]>([]); // Update options based on input value
   
     const handleInputChange = async (value: string) => {
       setInputValue(value);
@@ -17,15 +25,19 @@ const SearchBar: React.FC = () => {
       }
       
       // Fetch data from API using the fetchQuery utility function
-      const data = await fetchQuery(value);
+      const data: Logo[] = await fetchQuery(value);
       setOptions(data); // Set the fetched data as options
     };
+  
+  const handleSelectItem = (logo: Logo) => {
+    onSelectLogo(logo);
+  };
 
 
 return (
     <Autocomplete
-        defaultItems = {options}
         className="max-w-xs"
+        defaultItems = {options}
         value={inputValue}
         onInputChange={handleInputChange}
         placeholder="Enter company name or domain"
@@ -33,17 +45,17 @@ return (
         // label="Search"
         // variant="bordered"
     >
-      {(brands) => (
-        <AutocompleteItem key={brands.name}>
+      {options.map((brand, index) => (
+        <AutocompleteItem key={index} value={brand.domain} onClick={() => handleSelectItem(logo)}>
           <div className="flex gap-2 items-center">
-            <Avatar alt={brands.name} className="flex-shrink-0" size="sm" src={brands.icon} />
+            <Avatar alt={brand.name} className="flex-shrink-0" size="sm" src={brand.icon} />
             <div className="flex flex-col">
-              <span className="text-small">{brands.name}</span>
-              <span className="text-tiny text-default-400">{brands.domain}</span>
+              <span className="text-small">{brand.name}</span>
+              <span className="text-tiny text-default-400">{brand.domain}</span>
             </div>
           </div>
         </AutocompleteItem>
-      )}
+      ))}
     </Autocomplete>
 );
 };
