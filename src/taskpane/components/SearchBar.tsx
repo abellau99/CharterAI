@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useCallback, useEffect } from "react";
-import { debounce } from "lodash/debounce";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/autocomplete";
 import { Avatar } from "@nextui-org/avatar";
-import { fetchQuery } from "../../api/brandfetch/fetchQuery";
+// import { fetchClearbitQuery } from "src/api/clearbit/fetchQuery";
+import { fetchQuery } from "../../api/logo/brandfetch/fetchQuery";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 interface Logo {
@@ -43,7 +43,7 @@ return (
         value={inputValue}
         onInputChange={handleInputChange}
         placeholder="Enter company name or domain"
-        startContent={<MagnifyingGlassIcon className="w-6 h-6"/>}
+        // startContent={<MagnifyingGlassIcon className="w-6 h-6"/>}
         // label="Search"
         // variant="bordered"
       >

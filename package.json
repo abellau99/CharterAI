@@ -43,7 +43,9 @@
     "node-sass": "^7.0.3",
     "postcss": "^8.4.33",
     "react": "^18.2.0",
+    "react-circle-flags": "^0.0.20",
     "react-dom": "^18.2.0",
+    "react-flagpack": "^1.2.0",
     "react-scripts": "^5.0.1",
     "regenerator-runtime": "^0.13.7",
     "tailwind-merge": "^2.2.0"
@@ -66,6 +68,7 @@
     "file-loader": "^6.2.0",
     "html-loader": "^4.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.1",
     "less": "^3.9.0",
     "less-loader": "^10.0.1",
     "office-addin-cli": "^1.5.5",
