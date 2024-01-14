@@ -1,17 +1,28 @@
 import React from "react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { FlagIcon } from "@heroicons/react/24/outline";
-import { CircleStackIcon } from "@heroicons/react/24/outline";
-import {Tabs, Tab } from "@nextui-org/react";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import { Tab, Tabs } from "@nextui-org/tabs";
 
-export default const Tab = () => {
+const OptionTabs: React.FC = () => {
+    const [selected, setSelected] = React.useState("")
+
+    // Custom function to handle tab selection
+    const handleSelectionChange = (newSelectedKey: React.Key) => {
+    setSelected(newSelectedKey as string); // Assuming React.Key is compatible with string
+    };
+
     return (
         <div className="flex w-full flex-col">
-            <Tabs initialValue="tab1">
+            <Tabs
+                aria-label="Options"
+                selectedKey = {selected}
+                onSelectionChange = {handleSelectionChange}
+                >
                 <Tab 
                     key="logos"
                     title={
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2"> 
                           <PhotoIcon/>
                           <span>Logos</span>
                         </div>
@@ -30,7 +41,7 @@ export default const Tab = () => {
                     value="icons"
                     title={
                         <div className="flex items-center space-x-2">
-                          <CircleStackIcon/>
+                          <CheckCircleIcon/>
                           <span>Icons</span>
                         </div>
                       }
@@ -39,3 +50,5 @@ export default const Tab = () => {
         </div>
     )
 }
+
+export default OptionTabs;

@@ -1,25 +1,33 @@
 import * as React from "react";
-import { makeStyles } from "@fluentui/react-components";
+import { useState } from 'react';
+
 import Tabs from "./components/Tabs";
-import SearchBar from "./components/SearchBar.js";
-import ActiveLogo from './components/SelectedLogos';
+import SearchBar from "./components/SearchBar";
+import SelectedLogos from './components/SelectedLogos';
 import InsertLogoButton from './components/InsertLogoButton';
 
-const useStyles = makeStyles({
-  root: {
-    minHeight: "100vh",
-  },
-});
+// Defining the type for a Logo object
+interface Logo {
+  name: string;
+  domain: string;
+  icon: string | null;
+}
 
-const App = () => {
-  const styles = useStyles();
+const App: React.FC = () => {
+  // State to store selected logos
+  const [selectedLogos, setSelectedLogos] = useState<Logo[]>([]); // Initializing state with an empty array of logos
+
+  // Function to handle the selection of logos
+  const handleSelectLogo = (logo: Logo) => {
+    setSelectedLogos(prevSelectedLogos => [...prevSelectedLogos, logo]); // Adding the selected logo to the array of selected logos
+  };
 
   return (
-    <div className={styles.root}>
+    <div className="p-4 space-y-2">
       <Tabs />
-      <SearchBar />
-      <ActiveLogo />
-      <InsertLogoButton />
+      <SearchBar onSelectLogo={handleSelectLogo}/>
+      <SelectedLogos selectedLogos={selectedLogos}/>
+      <InsertLogoButton selectedLogos={selectedLogos}/>
     </div>
   );
 };

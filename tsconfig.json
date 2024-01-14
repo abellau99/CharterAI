@@ -13,6 +13,10 @@
     "removeComments": false,
     "sourceMap": true,
     "target": "es5",
+    "baseUrl": ".",
+    "paths": {
+      "@nextui-org/react": ["node_modules/@nextui-org/react"]
+    },
     "lib": [
       "es7",
       "dom"
@@ -22,7 +26,7 @@
       "node_modules/@types"
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/taskpane/components/SearchBar.jsx", "src/taskpane/components/Tabs.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/taskpane/components/SearchBar.tsx", "src/taskpane/components/Tabs.tsx"],
   "exclude": [
     "node_modules"
   ],
