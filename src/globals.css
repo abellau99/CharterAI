@@ -1,0 +1,8 @@
+/* Commented out because Next.js handles the CSS imports for you
+@import '@nextui-org/react/css'; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+

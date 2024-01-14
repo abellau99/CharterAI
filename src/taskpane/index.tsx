@@ -1,5 +1,4 @@
 import * as React from "react";
-import './styles.css'; // Please check why you get error when importing styles.css
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";

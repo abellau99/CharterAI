@@ -25,12 +25,12 @@ const App: React.FC = () => {
 
   return (
     <NextUIProvider>
-    <div className="p-4 space-y-2">
-      <OptionTabs />
-      <SearchBar onSelectLogo={handleSelectLogo}/>
-      <SelectedLogos selectedLogos={selectedLogos}/>
-      <InsertLogoButton selectedLogos={selectedLogos}/>
-    </div>
+      <div className="p-4 space-y-2">
+        <OptionTabs />
+        <SearchBar onSelectLogo={handleSelectLogo}/>
+        <SelectedLogos selectedLogos={selectedLogos}/>
+        <InsertLogoButton selectedLogos={selectedLogos}/>
+      </div>
     </NextUIProvider>
   );
 };

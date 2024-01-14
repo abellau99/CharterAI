@@ -1,3 +1,4 @@
+// Defining the type for a Logo object
 interface Logo {
     name: string;
     domain: string;

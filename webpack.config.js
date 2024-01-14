@@ -59,22 +59,14 @@ module.exports = async (env, options) => {
           },
         },
         {
-          test: /\.(sass|less|css)$/,
+          test: /\.css$/,
           use: [
             'style-loader',
             'css-loader',
-            {
-              loader: "postcss-loader",
-              options: {
-                plugins: () => [
-                  require("autoprefixer")()
-                ],
-              },
-            },
-            'sass-loader',
-          ]
+            "sass-loader",  
+          ],
         },
-      ],
+      ]
     },
     plugins: [
       new CopyWebpackPlugin({
