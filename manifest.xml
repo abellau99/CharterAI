@@ -73,11 +73,11 @@
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Get started with Charter AI"/>
-        <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue="Media"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Charter AI"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started."/>
+        <bt:String id="GetStarted.Description" DefaultValue="Charter AI is loaded succesfully. You can use it to add logos, icons or flags."/>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to insert logo"/>
       </bt:LongStrings>
     </Resources>

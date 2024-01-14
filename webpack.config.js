@@ -59,8 +59,20 @@ module.exports = async (env, options) => {
           },
         },
         {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader', 'postcss-loader'],
+          test: /\.(sass|less|css)$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins: () => [
+                  require("autoprefixer")()
+                ],
+              },
+            },
+            'sass-loader',
+          ]
         },
       ],
     },

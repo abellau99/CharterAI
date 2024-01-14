@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useState } from 'react';
+import {NextUIProvider} from "@nextui-org/system";
 
-import Tabs from "./components/Tabs";
+import OptionTabs from "./components/Tabs";
 import SearchBar from "./components/SearchBar";
 import SelectedLogos from './components/SelectedLogos';
 import InsertLogoButton from './components/InsertLogoButton';
@@ -23,12 +24,14 @@ const App: React.FC = () => {
   };
 
   return (
+    <NextUIProvider>
     <div className="p-4 space-y-2">
-      <Tabs />
+      <OptionTabs />
       <SearchBar onSelectLogo={handleSelectLogo}/>
       <SelectedLogos selectedLogos={selectedLogos}/>
       <InsertLogoButton selectedLogos={selectedLogos}/>
     </div>
+    </NextUIProvider>
   );
 };
 

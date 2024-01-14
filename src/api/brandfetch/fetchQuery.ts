@@ -2,7 +2,15 @@
 
 export const fetchQuery = async (searchValue: string): Promise<any[]> => {
   // Fetch data from API based on the searchValue
-  const response = await fetch(`https://api.brandfetch.io/v2/search/${searchValue}`);
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Referer: process.env.TOP_DOMAIN || '' // Use top domain from .env
+    }
+  };
+
+  const response = await fetch(`https://api.brandfetch.io/v2/search/${searchValue}`, options);
   const data = await response.json();
   return data; // Assuming API returns an array of brand objects
 };

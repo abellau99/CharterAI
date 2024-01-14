@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { debounce } from "lodash/debounce";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/autocomplete";
 import { Avatar } from "@nextui-org/avatar";
 import { fetchQuery } from "../../api/brandfetch/fetchQuery";
@@ -15,20 +16,20 @@ interface BrandAutocompleteProps {
 }
 
 const SearchBar: React.FC<BrandAutocompleteProps> = ({ onSelectLogo }) => {
-    const [inputValue, setInputValue] = useState<string>(''); 
-    const [options, setOptions] = useState<Logo[]>([]);  // Update options based on input value
-  
-    const handleInputChange = async (value: string) => {
-      setInputValue(value);
-      if (value.trim() === '') {
-        setOptions([]);
-        return;
-      }
+  const [inputValue, setInputValue] = useState<string>(''); 
+  const [options, setOptions] = useState<Logo[]>([]);  // Update options based on input value
+
+  const handleInputChange = async (value: string) => {
+    setInputValue(value);
+    if (value.trim() === '') {
+      setOptions([]);
+      return;
+    }
       
-      // Fetch data from API using the fetchQuery utility function
-      const data: Logo[] = await fetchQuery(value);
-      setOptions(data); // Set the fetched data as options
-    };
+    // Fetch data from API using the fetchQuery utility function
+    const data: Logo[] = await fetchQuery(value);
+    setOptions(data); // Set the fetched data as options
+  };
   
   const handleSelectItem = (logo: Logo) => {
     onSelectLogo(logo);
@@ -42,7 +43,7 @@ return (
         value={inputValue}
         onInputChange={handleInputChange}
         placeholder="Enter company name or domain"
-        startContent={<MagnifyingGlassIcon className = "text-xl"/>}
+        startContent={<MagnifyingGlassIcon className="w-6 h-6"/>}
         // label="Search"
         // variant="bordered"
       >
@@ -51,7 +52,7 @@ return (
           <div className="flex gap-2 items-center">
             <Avatar alt={brand.name} className="flex-shrink-0" size="sm" src={brand.icon} />
             <div className="flex flex-col">
-              <span className="text-small">{brand.name}</span>
+              <span className="text-small">{brand.name} </span>
               <span className="text-tiny text-default-400">{brand.domain}</span>
             </div>
           </div>
