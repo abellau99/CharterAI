@@ -1,7 +1,8 @@
 // This is a public open source API that only returns SVG logos, refer to https://github.com/kevinwuhoo/vector-logos-figma-plugin/blob/master/ui.html
 // It pulls info from Wiki, Github, VectorWiki, WorldVectorLogo, IconApe, Logo.Fandom, LogoWiki, LogoWine, Gitlab
+// This API gives a very extensive list of logo with multiple variants but low quality search 
 
-export const fetchQuery = async (searchValue: string): Promise<any[]> => {
+export const fetchVectorlogoLogo = async (searchValue: string): Promise<any[]> => {
     // Fetch data from API based on the searchValue
     const response = await fetch(`https://vector-logos-figma-plugin-api.vercel.app/api/search?query=${searchValue}`);
     const data = await response.json();

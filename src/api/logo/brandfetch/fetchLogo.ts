@@ -1,6 +1,7 @@
+// Refer to https://docs.brandfetch.com/reference/retriev e-brand for API documentation
 
-
-export const fetchBrandDetails = async (domainName: string): Promise<any[]> => {
+export const fetchBrandfetchLogo = async (domainName: string): Promise<any[]> => {
+  try{
     // Retrieve the Bearer token from the environment variable
     const bearerToken = process.env.BRANDFETCH_KEY;
     // Ensure the Bearer token is available
@@ -19,9 +20,19 @@ export const fetchBrandDetails = async (domainName: string): Promise<any[]> => {
     
     // Fetch data from API based on the searchValue
     const response = await fetch(`https://api.brandfetch.io/v2/brands/${domainName}`, options);
+    // Handle error responses
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data from BrandFetch API. Status: ${response.status}`);
+    }
+
     const data = await response.json();
-    return data; // Return the fetched data
+    return data; // Assuming API returns an array of brand objects
+  } catch (error) {
+    console.error('Error in fetchQuery:', error.message);
+    return []; // Return an empty array if there's an error
   }
+}
+
 
 /* This is the sampel API response
 {
@@ -192,4 +203,4 @@ export const fetchBrandDetails = async (domainName: string): Promise<any[]> => {
       }
     ]
   }
-  */
+*/

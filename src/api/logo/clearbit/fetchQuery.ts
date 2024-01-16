@@ -1,4 +1,4 @@
-// Refer to https://dashboard.clearbit.com/docs#name-to-domain-api for API documentation
+// Refer to https://dashboard.clearbit.com/docs#autocomplete-api for API documentation
 
 export const fetchClearbitQuery = async (searchValue: string): Promise<any[]> => {
   try {
